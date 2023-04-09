@@ -1,0 +1,49 @@
+class maint_cal(db.Model):
+    #sno = db.Column(db.Integer, primary_key=True)
+    my_gender = db.Column(db.String(200), nullable = False)
+    my_weight = db.Column(db.Integer, nullable = False)
+    my_height = db.Column(db.Integer, nullable = False)
+    my_activity = db.Column(db.String(200), nullable = False)
+    
+    def __repr__(self) -> str:
+        return f"{self.sno} - {self.food_name}"
+
+
+
+
+my_maint = maint_cal(my_gender=gender, my_weight = weight)
+        db.session.add(my_maint)
+        db.session.commit()
+    alldiet = maint_call.query.all()
+
+if request.method=='POST':
+        gender = request.form['gender']
+        weight = request.form['weight']
+    print(gender)
+
+
+my_name = db.Column(db.String(200), nullable = False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% if m_maint|length == 0 %}
+      
+    {% else %}
+    <div class="alert alert-dark" role="alert">
+      Your Maintenance Calories are:
+  </div>
+    {% endif %}

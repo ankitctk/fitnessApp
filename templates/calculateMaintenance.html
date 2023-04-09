@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block title %}
+    Maintenance Calories Calculator
+{% endblock title %}
+{% block body %}
+<div class="container my-3">
+    <h2>Maintenance Calories Calculator</h2>
+    <form action="/maintenance" method="POST">
+        <!--
+            <div class="form-group">
+            <label for="desc">Gender</label>
+            <input type="text" class="form-control" name="title" id="desc" aria-describedby="emailHelp"
+                placeholder="Male or female">
+        </div>
+
+
+        --ACTIVITY LEVEL
+
+        <div class="form-group">
+            <label for="desc">Activity level</label>
+            <input type="number" class="form-control" name="desc" id="desc" placeholder="Refer below chart to decide activity level">
+        </div>
+        -->
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" name="gender" id="gender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" name="age" id="age" placeholder="Enter your Age in Years">
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight</label>
+            <input type="number" class="form-control" name="weight" id="weight" placeholder="Enter your weight in Kgs">
+        </div>
+
+        <div class="form-group">
+            <label for="desc">Height</label>
+            <input type="number" class="form-control" name="height" id="desc" placeholder="Enter your height in cms">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Activity Level</label>
+            <select class="form-control" name="activity" id="exampleFormControlSelect1">
+              <option>Sedentary</option>
+              <option>Moderately active</option>
+              <option>Vigorously active</option>
+              <option>Extremely active</option>
+            </select>
+          </div>
+        
+        <button type="submit" class="btn btn-dark">Calculate</button>
+    </form>
+
+    <div class="container my-3">
+      {% if allmaint|length == 0 %}
+  
+      <div class="alert alert-dark" role="alert">
+          Enter details above to calculate your maintenance calories..
+      </div>
+  
+      {% else %}
+      <h2>My Maintenance Calories</h2>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">SNo.</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Weight</th>
+                  <th scope="col">Height</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Calculation Date</th>
+                  <th scope="col">Maintenance Calories</th>
+                  <th scope="col">Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+  
+              {% for Maint in allmaint %}
+              <tr>
+                  <th scope="row">{{loop.index}}</th>
+                  <td>{{Maint.my_gender}}</td>
+                  <td>{{Maint.my_age}}</td>
+                  <td>{{Maint.my_weight}}</td>
+                  <td>{{Maint.my_height}}</td>
+                  <td>{{Maint.my_activity}}</td>
+                  <td>{{Maint.date_created}}</td>
+                  <td>{{Maint.my_maint}}</td>
+                  <td>
+                          <a href="maintenance/delete/{{Maint.sno}}" type="button"
+                              class="btn btn-outline-danger btn-sm mx-1">Delete</button>
+                  </td>
+              </tr>
+              {% endfor %}
+  
+          </tbody>
+      </table>
+  </div my-3>
+  
+  {% endif %}
+
+
+</div my-3>
+{% endblock body %}
